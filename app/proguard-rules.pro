@@ -1,0 +1,2 @@
+-keep class com.example.simregionswitch.CarrierOverrideInstrumentation { *; }
+-keep class com.example.simregionswitch.ShellUserService { *; }
