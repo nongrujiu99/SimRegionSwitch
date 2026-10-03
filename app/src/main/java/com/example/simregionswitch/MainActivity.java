@@ -125,7 +125,7 @@ public class MainActivity extends Activity {
                 android.R.layout.simple_spinner_dropdown_item,
                 items
         ));
-        countrySpinner.addOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 customCountry.setVisibility(position == items.length - 1 ? View.VISIBLE : View.GONE);
@@ -168,7 +168,7 @@ public class MainActivity extends Activity {
         applyButton.setOnClickListener(v -> runOverride(false));
         restoreButton.setOnClickListener(v -> runOverride(true));
 
-        simSpinner.addOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        simSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 refreshCurrentState();

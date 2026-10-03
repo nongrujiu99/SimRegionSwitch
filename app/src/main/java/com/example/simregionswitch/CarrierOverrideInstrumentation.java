@@ -11,6 +11,8 @@ import android.telephony.CarrierConfigManager;
 
 import org.lsposed.hiddenapibypass.HiddenApiBypass;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Locale;
 
 /**
@@ -73,8 +75,11 @@ public class CarrierOverrideInstrumentation extends Instrumentation {
 
             finish(Activity.RESULT_OK, out);
         } catch (Throwable t) {
+            StringWriter sw = new StringWriter();
+            t.printStackTrace(new PrintWriter(sw));
             out.putString("result", "error");
             out.putString("error", t.getClass().getSimpleName() + ": " + t.getMessage());
+            out.putString("stack", sw.toString());
             finish(Activity.RESULT_CANCELED, out);
         } finally {
             if (ui != null) {

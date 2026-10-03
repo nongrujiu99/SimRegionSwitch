@@ -19,7 +19,29 @@ Android 16/17 对 `CarrierConfigManager.overrideConfig()` 加强了限制：直�
 `UiAutomation.adoptShellPermissionIdentity()` 临时获得 `MODIFY_PHONE_STATE`，然后调用
 CarrierConfig override。这样 Binder 调用来自应用 UID，而不是 shell UID。
 
-## 首次使用
+## PC 一键工具（免 Shizuku）
+
+> 原理：电脑 adb 本身就是 shell 身份，可直接启动本 APK 的
+> `CarrierOverrideInstrumentation` 完成覆盖，无需安装 Shizuku、无需配对。
+
+1. 手机开启「开发者选项 → USB 调试」，用数据线连接电脑，首次连接在手机弹窗点「允许」。
+2. 双击 `一键工具.bat`：
+   - 若提示未检测到 adb，选菜单 **8** 自动下载安装（或手动装 platform-tools）。
+   - 菜单 **1** 确认设备在线 → 菜单 **2** 安装 APK。
+3. 日常使用：菜单 **4** 选地区一键应用，菜单 **6** 验证，菜单 **5** 恢复。
+4. 手机重启后重插电脑，再跑一次菜单 **4** 即可。
+
+### PC 一键工具 EXE 的构建
+
+`SimRegionTool.cs` 是 `SimRegion一键工具.exe` 的源码（行为基线以当前 EXE 为准），
+仓库提供 `build_exe.bat` 一键重建：
+
+1. 准备构建输入：`adb\adb.exe`、`adb\AdbWinApi.dll`、`adb\AdbWinUsbApi.dll`
+   （platform-tools，可用「一键工具.bat」菜单 **8** 自动下载）和 `SimRegionSwitch-debug.apk`。
+2. 双击 `build_exe.bat`，仅依赖 Windows 自带的 .NET Framework 4.x 编译器（csc.exe），无需安装 VS。
+3. 产物 `SimRegion一键工具.exe` 已内嵌 adb 与 APK，可单独分发；修改源码后重跑该脚本即可保持代码与 EXE 同步。
+
+## 首次使用（手机端 + Shizuku 方式）
 
 1. 手机安装并启动 Shizuku。
 2. 开启开发者选项和无线调试，在 Shizuku 内完成一次配对并启动服务。

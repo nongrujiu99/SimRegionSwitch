@@ -1,0 +1,21 @@
+# ---------- Gradle / Android 构建产物 ----------
+.gradle/
+build/
+app/build/
+local.properties
+*.log
+
+# ---------- 下载的 adb platform-tools（可用「一键工具.bat」菜单 8 自动重新下载） ----------
+adb/
+
+# ---------- Gradle Wrapper 二进制（首次运行自动下载，见 README） ----------
+gradle/wrapper/gradle-wrapper.jar
+
+# ---------- 构建临时文件 ----------
+build_log.txt
+build_err.txt
+
+# ---------- IDE ----------
+.idea/
+*.iml
+.vscode/
